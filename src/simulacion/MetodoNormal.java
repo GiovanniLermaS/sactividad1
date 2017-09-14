@@ -13,12 +13,12 @@ import javax.swing.JList;
  *
  * @author crist
  */
-public class NumerosAleatorios extends javax.swing.JFrame {
+public class MetodoNormal extends javax.swing.JFrame {
 
     DefaultListModel listT = new DefaultListModel();
     DefaultListModel listG = new DefaultListModel();
 
-    public NumerosAleatorios() {
+    public MetodoNormal() {
         initComponents();
     }
 
@@ -37,6 +37,8 @@ public class NumerosAleatorios extends javax.swing.JFrame {
         listNumbersG = new javax.swing.JList<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        semilla = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +77,8 @@ public class NumerosAleatorios extends javax.swing.JFrame {
 
         jLabel4.setText("G(n)");
 
+        jLabel5.setText("Semilla");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,6 +90,10 @@ public class NumerosAleatorios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(semilla))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,11 +127,15 @@ public class NumerosAleatorios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(countArray, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(semilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
@@ -144,22 +156,26 @@ public class NumerosAleatorios extends javax.swing.JFrame {
         listNumbersG.setModel(listG);
         Logic l = new Logic();
         if (listT == null) {
-            for (Object list : l.functions(operation.getText(), Integer.parseInt(countArray.getText()), 0)) {
+            for (Float list : l.functionTn(operation.getText(), Integer.parseInt(countArray.getText()),
+                    Float.parseFloat(semilla.getText()))) {
                 listT.addElement(list);
             }
         } else {
             listT.clear();
-            for (Object list : l.functions(operation.getText(), Integer.parseInt(countArray.getText()), 0)) {
+            for (Float list : l.functionTn(operation.getText(), Integer.parseInt(countArray.getText()),
+                    Float.parseFloat(semilla.getText()))) {
                 listT.addElement(list);
             }
         }
         if (listG == null) {
-            for (Object list : l.functions(operation.getText(), Integer.parseInt(countArray.getText()), 1)) {
+            for (Float list : l.functionGn(operation.getText(), Integer.parseInt(countArray.getText()),
+                    Float.parseFloat(semilla.getText()))) {
                 listG.addElement(list);
             }
         } else {
             listG.clear();
-            for (Object list : l.functions(operation.getText(), Integer.parseInt(countArray.getText()), 1)) {
+            for (Float list : l.functionGn(operation.getText(), Integer.parseInt(countArray.getText()),
+                    Float.parseFloat(semilla.getText()))) {
                 listG.addElement(list);
             }
         }
@@ -182,20 +198,21 @@ public class NumerosAleatorios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NumerosAleatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MetodoNormal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NumerosAleatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MetodoNormal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NumerosAleatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MetodoNormal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NumerosAleatorios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MetodoNormal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NumerosAleatorios().setVisible(true);
+                new MetodoNormal().setVisible(true);
             }
         });
     }
@@ -207,10 +224,12 @@ public class NumerosAleatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listNumbersG;
     private javax.swing.JList<String> listNumbersT;
     private javax.swing.JTextField operation;
+    private javax.swing.JTextField semilla;
     // End of variables declaration//GEN-END:variables
 }
