@@ -94,6 +94,86 @@ public class Logic {
         return list;
     }
 
+    public static ArrayList<String> fibonacci(int iC, int iM, int iS, int iR, double sN0, double sN1) {
+        int count = 2, m = iM, s = iS, r = iR;
+        ArrayList<Double> array = new ArrayList<>();
+        ArrayList<Double> arrayU = new ArrayList<>();
+        ArrayList<String> total = new ArrayList<>();
+        array.add(sN0);
+        array.add(sN1);
+        while (count < iC) {
+            double operacion = (array.get(count - s) + array.get(count - r)) % m;
+            array.add(operacion);
+            arrayU.add(operacion / m);
+            System.out.println("Operación= " + operacion + ", U= " + operacion / m);
+            total.add("Operación= " + operacion + ", U= " + operacion / m);
+            count++;
+        }
+        return total;
+    }
+
+    public static ArrayList<String> whichmannHill(int iC, int iX, int iY, int iZ) {
+        int count = 1;
+        double x = iX, y = iY, z = iZ;
+        ArrayList<Double> arrayX = new ArrayList<>();
+        ArrayList<Double> arrayY = new ArrayList<>();
+        ArrayList<Double> arrayZ = new ArrayList<>();
+        ArrayList<Double> arrayU = new ArrayList<>();
+        ArrayList<String> total = new ArrayList<>();
+        arrayX.add(x);
+        arrayY.add(y);
+        arrayZ.add(z);
+        while (count < iC) {
+            double operacionX = (171 * arrayX.get(count - 1)) % 30269;
+            double operacionY = (172 * arrayY.get(count - 1)) % 30307;
+            double operacionZ = (170 * arrayZ.get(count - 1)) % 30323;
+            double operacionU = (operacionX / 30269) + (operacionY / 30307) + (operacionZ / 30323);
+            arrayX.add(operacionX);
+            arrayY.add(operacionY);
+            arrayZ.add(operacionZ);
+            arrayU.add(operacionU);
+            total.add("Operación x= " + operacionX
+                    + ", Operación y= " + operacionY
+                    + ", Operación z= " + operacionZ
+                    + ", U= " + operacionU);
+            count++;
+        }
+        return total;
+    }
+
+    public static ArrayList<String> ecuyer(int iC, int iX, int iY) {
+        int count = 1;
+        double x = iX, y = iY;
+        ArrayList<Double> arrayX = new ArrayList<>();
+        ArrayList<Double> arrayY = new ArrayList<>();
+        ArrayList<Double> arrayZ = new ArrayList<>();
+        ArrayList<Double> arrayU = new ArrayList<>();
+        ArrayList<String> total = new ArrayList<>();
+        arrayX.add(x);
+        arrayY.add(y);
+        while (count < iC) {
+            double operacionX = (40014 * arrayX.get(count - 1)) % 2147483563;
+            double operacionY = (40692 * arrayY.get(count - 1)) % 2147483399;
+            double operacionZ = (operacionX - operacionY) % 2147483562;
+            double operacionU = 0.0;
+            if (operacionZ >= 0) {
+                operacionU = (operacionZ + 1) / 2147483563;
+            } else if (operacionZ == 0) {
+                operacionU = (2147483562) / 2147483563;
+            }
+            arrayX.add(operacionX);
+            arrayY.add(operacionY);
+            arrayZ.add(operacionZ);
+            arrayU.add(operacionU);
+            total.add("Operación x= " + operacionX
+                    + ", Operación y= " + operacionY
+                    + ", Operación z= " + operacionZ
+                    + ", U= " + operacionU);
+            count++;
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
 
     }
