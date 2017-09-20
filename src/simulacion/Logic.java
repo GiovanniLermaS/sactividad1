@@ -132,9 +132,9 @@ public class Logic {
             arrayY.add(operacionY);
             arrayZ.add(operacionZ);
             arrayU.add(operacionU);
-            total.add("Operación x= " + operacionX
-                    + ", Operación y= " + operacionY
-                    + ", Operación z= " + operacionZ
+            total.add("x= " + operacionX
+                    + ", y= " + operacionY
+                    + ", z= " + operacionZ
                     + ", U= " + operacionU);
             count++;
         }
@@ -165,9 +165,9 @@ public class Logic {
             arrayY.add(operacionY);
             arrayZ.add(operacionZ);
             arrayU.add(operacionU);
-            total.add("Operación x= " + operacionX
-                    + ", Operación y= " + operacionY
-                    + ", Operación z= " + operacionZ
+            total.add("x= " + operacionX
+                    + ", y= " + operacionY
+                    + ", z= " + operacionZ
                     + ", U= " + operacionU);
             count++;
         }
