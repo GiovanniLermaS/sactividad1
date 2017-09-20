@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
 public class Ecuyer extends javax.swing.JFrame {
 
     DefaultListModel listStringE = new DefaultListModel();
-    
+
     public Ecuyer() {
         initComponents();
     }
@@ -118,10 +118,19 @@ public class Ecuyer extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         listE.setModel(listStringE);
         Logic l = new Logic();
-        for (String list : l.ecuyer(Integer.parseInt(count.getText()),
-            Integer.parseInt(x0.getText()),
-            Integer.parseInt(y0.getText()))) {
-        listStringE.addElement(list);
+        if (listStringE == null) {
+            for (String list : l.ecuyer(Integer.parseInt(count.getText()),
+                    Integer.parseInt(x0.getText()),
+                    Integer.parseInt(y0.getText()))) {
+                listStringE.addElement(list);
+            }
+        } else {
+            listStringE.clear();
+            for (String list : l.ecuyer(Integer.parseInt(count.getText()),
+                    Integer.parseInt(x0.getText()),
+                    Integer.parseInt(y0.getText()))) {
+                listStringE.addElement(list);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

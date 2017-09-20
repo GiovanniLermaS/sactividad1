@@ -152,13 +152,25 @@ public class Fibonacci extends javax.swing.JFrame {
     private void calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateActionPerformed
         listF.setModel(listStringF);
         Logic l = new Logic();
-        for (String list : l.fibonacci(Integer.parseInt(count.getText()),
-                Integer.parseInt(module.getText()),
-                Integer.parseInt(s.getText()),
-                Integer.parseInt(r.getText()),
-                Integer.parseInt(n0.getText()),
-                Integer.parseInt(n1.getText()))) {
-            listStringF.addElement(list);
+        if (listStringF == null) {
+            for (String list : l.fibonacci(Integer.parseInt(count.getText()),
+                    Integer.parseInt(module.getText()),
+                    Integer.parseInt(s.getText()),
+                    Integer.parseInt(r.getText()),
+                    Integer.parseInt(n0.getText()),
+                    Integer.parseInt(n1.getText()))) {
+                listStringF.addElement(list);
+            }
+        } else {
+            listStringF.clear();
+            for (String list : l.fibonacci(Integer.parseInt(count.getText()),
+                    Integer.parseInt(module.getText()),
+                    Integer.parseInt(s.getText()),
+                    Integer.parseInt(r.getText()),
+                    Integer.parseInt(n0.getText()),
+                    Integer.parseInt(n1.getText()))) {
+                listStringF.addElement(list);
+            }
         }
     }//GEN-LAST:event_calculateActionPerformed
 

@@ -126,11 +126,21 @@ public class WhichmannHill extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         listW.setModel(listStringW);
         Logic l = new Logic();
-        for (String list : l.whichmannHill(Integer.parseInt(count.getText()),
-                Integer.parseInt(x0.getText()),
-                Integer.parseInt(y0.getText()),
-                Integer.parseInt(z0.getText()))) {
-            listStringW.addElement(list);
+        if (listStringW == null) {
+            for (String list : l.whichmannHill(Integer.parseInt(count.getText()),
+                    Integer.parseInt(x0.getText()),
+                    Integer.parseInt(y0.getText()),
+                    Integer.parseInt(z0.getText()))) {
+                listStringW.addElement(list);
+            }
+        } else {
+            listStringW.clear();
+            for (String list : l.whichmannHill(Integer.parseInt(count.getText()),
+                    Integer.parseInt(x0.getText()),
+                    Integer.parseInt(y0.getText()),
+                    Integer.parseInt(z0.getText()))) {
+                listStringW.addElement(list);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
