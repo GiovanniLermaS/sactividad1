@@ -1,10 +1,18 @@
 package simulacion;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import javax.imageio.ImageIO;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.swing.JTextArea;
+import simulacion.imagen.RandomPoints;
 
 public class Logic {
 
@@ -174,7 +182,47 @@ public class Logic {
         return total;
     }
 
-    public static void main(String[] args) {
+    public static ArrayList<Integer> imageGetNumbers(int limit) {
+        Random rnd = new Random();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int countArray = 100;
+        Double a = 4014.0,
+                b = 18.0,
+                m = 397.0,
+                xn = Double.parseDouble((rnd.nextInt(100) + 400) + "");
 
+        while (list.size() < countArray) {
+            xn = ((a * xn) + b) % m;
+            if (xn < limit) {
+                list.add(xn.intValue());
+            }
+        }
+        return list;
+    }
+
+    public String countPointsImage(File file) throws IOException {
+        Logic lg = new Logic();
+        BufferedImage img = ImageIO.read(file);
+        int iX = img.getWidth();
+        int iY = img.getHeight();
+        String[][] r = new String[iX][iY];
+        ArrayList<Integer> aX = lg.imageGetNumbers(iX);
+        ArrayList<Integer> aY = lg.imageGetNumbers(iY);
+        int p = 0;
+
+        for (int i = 0; i < iX; i++) {
+            for (int j = 0; j < iY; j++) {
+                int color = img.getRGB(i, j);
+                r[i][j] = ((color & 0xff0000) >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff);
+            }
+        }
+
+        for (int i = 0; i < 100; i++) {
+            img.setRGB(aX.get(i), aY.get(i), (new Color(255, 0, 0).getRGB()));
+            if ((r[aX.get(i)][aY.get(i)]).equalsIgnoreCase("0,0,0")) {
+                p++;
+            }
+        }
+        return "El " + p + "% de la imagen es area negra";
     }
 }
